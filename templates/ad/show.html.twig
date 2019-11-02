@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ad.title}}
+{% endblock %}
+
+{% block body %}
+    <div class="add-title" style="background-image: url({{ ad.coverImage }})">
+        <div class="container">
+            <h1 class="my-4 text-center">{{ad.title}}</h1>
+            <p>{{ ad.introduction }}</p>
+            <p class="h2">
+                <strong>{{ad.rooms}}
+                    chambres</strong>
+                pour
+                <strong>{{ ad.price }}€</strong>
+                par nuit</p>
+            <a href="#" class="btn btn-success">Réserver</a>
+        </div>
+    </div>
+
+    <div class="container text-primary">
+        <div class="row">
+            <div class="col-md-8 my-3">
+                {{ ad.content | raw }}
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for image in ad.images %}
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
+                        {% endfor %}
+                    </ol>
+                    <div class="carousel-inner">
+                        {% for image in ad.images %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <img class="d-block w-100" src="{{ image.url }}" alt="First slide">
+                            </div>
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ ad.title }}</h5>
+                                <p>{{ image.caption }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="http://placehold.it/64x64" alt="avatar de l'hote">
+                    </div>
+                    <div class="col">
+                        <h3>Nom de l'hote</h3>
+                        <span class="badge badge-info">3 annonces</span>
+                    </div>
+                </div>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam ex adipisci rem obcaecati nemo dolore eum ea libero minima. Laudantium.</p>
+                <p>Neque voluptas perspiciatis voluptatibus exercitationem eius ea velit optio minus doloremque eum placeat cum error, repellat at pariatur fugit tempora.</p>
+                <p>Ea tempora porro provident, necessitatibus vitae eos unde odit dignissimos laboriosam fugit nesciunt, iusto a molestias magni expedita deserunt! Culpa!</p>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

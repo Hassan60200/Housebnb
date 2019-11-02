@@ -1,14 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-    <div class="container">
+    <div class="container text-primary">
         <div class="jumbotron mt-3">
-            <h1 class="display-3">Bienvenue sur Housebnb !</h1>
+            <h1 class="text-center">Bienvenue sur Housebnb !</h1>
             <p class="lead">Nous mettons en relation les voyageurs et les propriétaires qui veulent profiter d'opportunités et gagner de l'argent en proposant leur bien en location!</p>
             <hr class="my-4">
             <p>Vous êtes voyageurs ? Et vous voulez voir ou  vous pourrez loger pour votre  prochain déplacement.</p>
             <p class="lead text-center">
-                <a class="btn btn-success btn-lg " href="#" role="button">Voir nos annonces</a>
+                <a class="btn btn-success btn-lg " href="{{ path('ads_index') }}" role="button">Voir nos annonces</a>
             </p>
         </div>
 

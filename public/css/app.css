@@ -1,0 +1,19 @@
+div.container{
+    margin-top: 20px;
+}
+
+div.add-title{
+    padding: 2em;
+    background-size: cover;
+    background-position: center;
+}
+
+
+div.add-title h1, div.add-title p{
+    color: white;
+ text-shadow: 6px rgba(0, 0, 0, 0.5);
+}
+
+div.carousel-caption{
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
