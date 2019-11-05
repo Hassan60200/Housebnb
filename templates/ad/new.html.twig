@@ -4,6 +4,7 @@
     Création d'une annonce
 {% endblock %}
 
+{% form_theme form_self %}
 
 {% block body %}
 
@@ -19,4 +20,35 @@
         {{ form_end(form) }}
     </div>
 
+{% endblock %}
+
+{% block _ad_images_widget %}
+    <p>Ici, vous pouvez ajouter vos propres images !</p>
+
+    {{ form_widget(form) }}
+
+    <div class="form-group">
+        <button type="button" id="add-images" class="btn btn-primary"></button>
+    </div>
+{% endblock %}
+
+
+{% block _ad_image_entry_row %}
+{{ form_widget(form) }}
+
+
+{% endblock %}
+
+{% block _ad_images_entry %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                {{ form_widget(form_url ) }}
+            </div>
+            <div class="col">
+                {{ form_widget(form_caption) }}
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
