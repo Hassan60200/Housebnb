@@ -23,6 +23,9 @@
 {% block _ad_images_widget %}
     <p class="text-danger">Ici, vous pouvez ajouter vos propres images !</p>
     {{ form_widget(form) }}
+
+    <input type="hidden" id="widgets-counter" value="0">
+
     <div class="form-group">
         <button type="button" id="add-images" class="btn btn-warning">Ajouter une nouvelle image</button>
     </div>
@@ -57,13 +60,15 @@
 {% block javascripts %}
     <script>
         $('#add-images').click(function () { // Je récupère les numéros des futurs champs que je vais créer
-            const index = $('#add_images div.form-group').length;
+            const index = +$('#widgets-counter').val();
 
             // Je récupère le prototype des entrées
             const tmpl = $('#ad_images').data('prototype').replace(/__name__/g, index);
 
             // J'injecte ce code au sein de la div
             $('#ad_images').append(tmpl);
+
+            $('#widgets-counter').val(index + 1);
 
             //Je gère le bouton supprimer
             handleDeleteButtons();
