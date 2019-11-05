@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-2">
-                <button type="button" class="btn btn-danger" data-action="delete">X</button>
+                <button type="button" class="btn btn-danger" data-action="delete" data-target="#block_{{id}}">X</button>
             </div>
         </div>
     </div>
@@ -64,6 +64,18 @@
 
             // J'injecte ce code au sein de la div
             $('#ad_images').append(tmpl);
+
+            //Je gère le bouton supprimer
+            handleDeleteButtons();
         });
+
+        function handleDeleteButtons(){
+            $('button[data-action="delete"]').click(function(){
+                const target = this.dataset.target;
+                $(target).remove()
+            });
+        }
+
+        handleDeleteButtons();
     </script>
 {% endblock %}
