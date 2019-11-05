@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}   Création d'une annonce {% endblock %}
+{% block title %}
+    Création d'une annonce
+{% endblock %}
 
-{% form_theme form_self %}
+{% form_theme form _self %}
 
 {% block body %}
     <div class="container text-primary">
@@ -19,28 +21,49 @@
 {% endblock %}
 
 {% block _ad_images_widget %}
-    <p>Ici, vous pouvez ajouter vos propres images !</p>
+    <p class="text-danger">Ici, vous pouvez ajouter vos propres images !</p>
     {{ form_widget(form) }}
     <div class="form-group">
-        <button type="button" id="add-images" class="btn btn-primary">Ajouter une nouvelle image</button>
+        <button type="button" id="add-images" class="btn btn-warning">Ajouter une nouvelle image</button>
     </div>
 {% endblock %}
 
-{% block _ad_image_entry_row %}
-{{ form_widget(form) }}
+{% block _ad_images_entry_row %}
+
+    {{ form_widget(form) }}
 
 {% endblock %}
 
-{% block _ad_images_entry %}
-    <div class="form-group">
+{% block _ad_images_entry_widget %}
+    <div class="form-group" id="block_{{id}}">
         <div class="row">
-            <div class="col">
-                {{ form_widget(form_url ) }}
+            <div class="col-10">
+                <div class="row">
+                    <div class="col">
+                        {{ form_widget(form.url) }}
+                    </div>
+                    <div class="col">
+                        {{ form_widget(form.caption) }}
+                    </div>
+                </div>
             </div>
-            <div class="col">
-                {{ form_widget(form_caption) }}
+            <div class="col-2">
+                <button type="button" class="btn btn-danger" data-action="delete">X</button>
             </div>
-
         </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $('#add-images').click(function () { // Je récupère les numéros des futurs champs que je vais créer
+            const index = $('#add_images div.form-group').length;
+
+            // Je récupère le prototype des entrées
+            const tmpl = $('#ad_images').data('prototype').replace(/__name__/g, index);
+
+            // J'injecte ce code au sein de la div
+            $('#ad_images').append(tmpl);
+        });
+    </script>
 {% endblock %}
