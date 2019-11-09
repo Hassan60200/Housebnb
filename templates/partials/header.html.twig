@@ -16,11 +16,30 @@
                 <a class="nav-link" href="{{ path('ads_create') }}">Créer une nouvelle annonce</a>
             </li>
         </ul>
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">Mon compte</a>
-            </li>
-        </ul>
+        {% if app.user %}
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
+                </button>
+                <div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
+                    <a class="text-white" href="{{ path('account_profil') }}">Modifiez mon profil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="text-white" href="{{ path('account_password') }}">Modifiez votre mot de passe</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="text-white" href="{{ path('account_logout') }}">Déconnexion</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
+                </button>
+                <div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
+                    <a class="text-white" href="{{ path('register') }}">Inscription</a>
+                    <div class="dropdown-divider"></div>
+
+                    <a class="text-white" href="{{ path('account_login') }}">Connexion</a>
+                </div>
+            </div>
+        {% endif %}
     </div>
 </nav>
 {% for label, messages in app.flashes %}
