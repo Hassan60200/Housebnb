@@ -26,7 +26,7 @@
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         {% for image in ad.images %}
-                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %}class="active"{% endif %}></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" {% if loop.first %} class="active" {% endif %}></li>
                         {% endfor %}
                     </ol>
                     <div class="carousel-inner">
@@ -51,22 +51,22 @@
                 </div>
             </div>
             <div class="col">
+                {% set a = ad.author %}
                 <div class="row">
-                    <div class="col-4">
-                        <img src="http://placehold.it/64x64" alt="avatar de l'hote">
+                    <div class="col-3">
+                        <a href="{{ path('user_show', {'slug': a.slug}) }}"><img src="{{a.pictures}}" class="avatar avatar-medium" alt="avatar de {{a.fullName}}"></a>
                     </div>
                     <div class="col">
-                        <h3>Nom de l'hote</h3>
-                        <span class="badge badge-info">3 annonces</span>
+                        <a href="{{ path('user_show', {'slug': a.slug}) }}">
+                            <h3>{{a.fullName}}</h3>
+                        </a>
+                        <span class="badge badge-info">{{a.ads | length}}
+                            annonces</span>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam ex adipisci rem obcaecati nemo dolore eum ea libero minima. Laudantium.</p>
-                <p>Neque voluptas perspiciatis voluptatibus exercitationem eius ea velit optio minus doloremque eum placeat cum error, repellat at pariatur fugit tempora.</p>
-                <p>Ea tempora porro provident, necessitatibus vitae eos unde odit dignissimos laboriosam fugit nesciunt, iusto a molestias magni expedita deserunt! Culpa!</p>
+                <p>{{a.description | raw }}</p>
             </div>
-
         </div>
-
     </div>
 
 {% endblock %}

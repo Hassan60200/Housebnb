@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page de
+    {{user.fullName}}
+{% endblock %}
+
+{% block body %}
+    <div class="container text-dark">
+        <div class="row align-item-center">
+            <div class="col-3">
+                <img src="{{user.pictures}}" alt="avatar de {{user.fullName}}" class="avatar my-3">
+                <br>
+
+                <span class="badge badge-info">{{user.ads | length}}
+                    annonces</span>
+            </div>
+
+            <div class="col-9">
+                <h1 class="jumbotron text-center bg-dark text-white">{{user.fullName}}</h1>
+                {% if user is same as (app.user) %}
+                    <div class="my-3">
+                        <a href="{{ path('account_profil') }}" class="btn btn-info mr-2 mb-2 rounded">Modifiez mon profil</a>
+                        <a href="{{ path('account_password') }}" class="btn btn-info mr-2 mb-2 rounded">Modifiez mon mot de passe</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {{user.description | raw}}
+        <hr>
+
+        <h2 class="text-center">Les annonces de
+            {{user.fullName}}</h2>
+
+        {% if user.ads | length > 0 %}
+            <div class="row">
+                {% for ad in user.ads %}
+                    {% include "ad/_ad.html.twig" %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-warning">
+                <p>
+                    <strong>{{user.fullName}}
+                        n'a pas encore d'annonces sur le site</strong>
+                </p>
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}
