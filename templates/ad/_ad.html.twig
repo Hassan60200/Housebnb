@@ -14,8 +14,13 @@
                 <a href="{{ url }}">{{ ad.title }}</a>
             </h4>
             <p class="card-text">{{ ad.introduction }}</p>
-            <a href="{{ url }}" class="btn btn-info">En savoir plus</a>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <a href="{{ url }}" class="btn btn-info btn-sm m-2">En savoir plus</a>
 
+                {% if  app.user and app.user == ad.author %}
+                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-success btn-sm m-2">Modifiez l'annonce</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 </div>
