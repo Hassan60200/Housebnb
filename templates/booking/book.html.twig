@@ -1,0 +1,41 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Réserver l' annonce
+	{{ ad.title }}
+	!
+{% endblock %}
+
+{% block body %}
+
+	<div class="container text-center">
+		<h1 class="jumbotron bg-primary text-white mb-5">Réservation pour l'annonce :
+			{{ ad.title }}
+		</h1>
+
+		<p class="text-primary">Vous ếtes sur le point de réserver l'annonce de
+			<strong class="text-danger text-uppercase">{{ ad.author.fullName }}</strong>
+		</p>
+
+		{{ form_start(form)}}
+		<div class="alert alert_light">
+			<h2>Commencez par nous dire quelles sont les dates qui vous intéressent ?</h2>
+			<div class="row">
+				<div class="col">
+					{{ form_row(form.startDate)}}
+				</div>
+				<div class="col">
+					{{ form_row(form.endDate)}}
+				</div>
+			</div>
+		</div>
+
+		<h4>Montant du séjour :
+			<span id="amount">...</span>
+			&euro;</h4>
+		<span id="days">0</span>
+		nuit(s) à
+		{{ ad.price}}/nuit
+
+		{{form_end(form)}}
+	</div>
+{% endblock %}
