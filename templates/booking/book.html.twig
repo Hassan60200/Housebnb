@@ -7,8 +7,8 @@
 
 {% block body %}
 
-	<div class="container text-center">
-		<h1 class="jumbotron bg-primary text-white mb-5">Réservation pour l'annonce :
+	<div class="container text-center text-primary">
+		<h1 class="jumbotron bg-primary text-white mb-5">Réservation de l'annonce :
 			{{ ad.title }}
 		</h1>
 
@@ -34,7 +34,21 @@
 			&euro;</h4>
 		<span id="days">0</span>
 		nuit(s) à
-		{{ ad.price}}/nuit
+		{{ ad.price}}€/nuit
+
+		<h2 class="my-5">Vous avez un commentaires à faire part</h2>
+
+		<div class="border border-dark mb-5 form-group">
+			{{form_row(form.comment)}}
+		</div>
+
+		<div class="jumbotron bg-primary text-white">
+			<h2 class="my-5 text-white">Vous avez terminé !</h2>
+			<p>Vacances de rếve, boulots ou escale? Peut importe on est avec vous
+			</p>
+		</div>
+
+		<button class="btn btn-success" type="submit">Je réserve</button>
 
 		{{form_end(form)}}
 	</div>

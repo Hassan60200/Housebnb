@@ -3,9 +3,13 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\PrePersist;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\BookingRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Booking
 {
@@ -30,11 +34,13 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date(message="Attention la date d'arrivée doit être au bon format")
      */
     private $startDate;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\Date(message="Attention la date d'arrivée doit être au bon format")
      */
     private $endDate;
 
@@ -47,6 +53,33 @@ class Booking
      * @ORM\Column(type="float")
      */
     private $amount;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+    /**
+     * Callback appelé à chaque fois qu'on crée une réservation
+     *@ORM\PrePersist
+     * @return void
+     */
+    public function prePersist()
+    {
+        if (empty($this->createdAt)) {
+            $this->createdAt = new \DateTime();
+        }
+
+        if (empty($this->amount)) {
+            //prix de l'annonce fois le nombre de jour
+            $this->amount = $this->ad->getPrice() * $this->getDuration();
+        }
+    }
+
+    public function getDuration()
+    {
+        $diff = $this->endDate->diff($this->startDate);
+        return $diff->days;
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +154,18 @@ class Booking
     public function setAmount(float $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }
