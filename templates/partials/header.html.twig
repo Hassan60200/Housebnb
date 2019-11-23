@@ -1,58 +1,60 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-    <a class="navbar-brand" href="{{ path('homepage') }}">Homebnb</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+	<a class="navbar-brand" href="{{ path('homepage') }}">Homebnb</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ path('ads_index') }}">Annonces</a>
-            </li>
+	<div class="collapse navbar-collapse" id="navbarColor01">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('homepage') }}">Accueil</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="{{ path('ads_index') }}">Annonces</a>
+			</li>
 
-        </ul>
-        {% if app.user %}
-            <div class="dropdown">
-                <a href="{{ path('account_index') }}">
-                    <img src="{{app.user.pictures}}" class="avatar-mini" alt="photo de profil de l'utilisateur connecté">
-                </a>
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
-                </button>
-                <div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
-                    <a class="text-white" href="{{ path('ads_create') }}">Créer une nouvelle annonce</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="text-white" href="{{ path('account_index') }}">Mon profil</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="text-white" href="{{ path('account_profil') }}">Modifiez mon profil</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="text-white" href="{{ path('account_password') }}">Modifiez votre mot de passe</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="text-white" href="{{ path('account_logout') }}">Déconnexion</a>
-                </div>
-            </div>
-        {% else %}
-            <div class="dropdown">
-                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
-                </button>
-                <div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
-                    <a class="text-white" href="{{ path('register') }}">Inscription</a>
-                    <div class="dropdown-divider"></div>
+		</ul>
+		{% if app.user %}
+			<div class="dropdown">
+				<a href="{{ path('account_index') }}">
+					<img src="{{app.user.pictures}}" class="avatar-mini" alt="photo de profil de l'utilisateur connecté">
+				</a>
+				<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
+				</button>
+				<div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
+					<a class="text-white" href="{{ path('ads_create') }}">Créer une nouvelle annonce</a>
+					<div class="dropdown-divider"></div>
+					<a class="text-white" href="{{ path('account_index') }}">Mon profil</a>
+					<div class="dropdown-divider"></div>
+					<a class="text-white" href="{{ path('account_bookings') }}">Mes réservations</a>
+					<div class="dropdown-divider"></div>
+					<a class="text-white" href="{{ path('account_profil') }}">Modifiez mon profil</a>
+					<div class="dropdown-divider"></div>
+					<a class="text-white" href="{{ path('account_password') }}">Modifiez votre mot de passe</a>
+					<div class="dropdown-divider"></div>
+					<a class="text-white" href="{{ path('account_logout') }}">Déconnexion</a>
+				</div>
+			</div>
+		{% else %}
+			<div class="dropdown">
+				<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Mon compte
+				</button>
+				<div class="dropdown-menu bg-info text-center" aria-labelledby="dropdownMenu1">
+					<a class="text-white" href="{{ path('register') }}">Inscription</a>
+					<div class="dropdown-divider"></div>
 
-                    <a class="text-white" href="{{ path('account_login') }}">Connexion</a>
-                </div>
-            </div>
-        {% endif %}
-    </div>
+					<a class="text-white" href="{{ path('account_login') }}">Connexion</a>
+				</div>
+			</div>
+		{% endif %}
+	</div>
 </nav>
 {% for label, messages in app.flashes %}
-    <div class="container">
-        <div class="alert alert-{{ label }}">
-            {% for message in messages %}
-                <p>{{ message | raw }}</p>
-            {% endfor %}
-        </div>
-    </div>
+	<div class="container">
+		<div class="alert alert-{{ label }}">
+			{% for message in messages %}
+				<p>{{ message | raw }}</p>
+			{% endfor %}
+		</div>
+	</div>
 {% endfor %}

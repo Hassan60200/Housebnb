@@ -110,12 +110,40 @@ class Ad
      * @ORM\PreUpdate
      * @return void
      */
-    public function initializeSlug(){
-        if(empty($this->slug)){
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
             $slugify = new Slugify();
             $this->slug = $slugify->slugify($this->title);
         }
     }
+
+    /**
+     * Permet d'obtenir un tableau des jours qui ne sont pas disponibles dans cette annonce
+     *
+     * @return array Un tableau d'objets DateTIme représentant les jours d'occupation
+     */
+    public function getNotAvailableDays()
+    {
+        $notAvailableDays = [];
+
+        foreach ($this->bookings as $booking) {
+            // Calculer les jours qui se trouve entre la date d'arrivée et de départ
+            $resultat = range(
+                $booking->getStartDate()->getTimestamp(),
+                $booking->getEndDate()->getTimestamp(),
+                24 * 60 * 60
+            );
+
+            $days = array_map(function($dayTimestamp){
+                return new\DateTime(date('Y-m-d', $dayTimestamp));
+            }, $resultat);
+
+            $notAvailableDays = array_merge($notAvailableDays, $days);
+        }
+        return $notAvailableDays;
+    }
+
 
     public function getId(): ?int
     {
