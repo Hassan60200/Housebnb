@@ -39,7 +39,9 @@ div.carousel-caption{
     color: firebrick !important;
     font-weight: bold;
 }
-
-.form-group{
-    box-shadow: 2px 2px 2px 1px grey;
+span.rating i{
+    color: gold;
+}
+.fade{
+    background-color: darkgoldenrod;
 }

@@ -15,8 +15,12 @@
 			<div class="alert alert-success">
 				<h4 class="alert-heading">Bravo !</h4>
 				<p>
-                    Votre réservation auprès de <a href="{{ path("user_show", {'slug': author.slug})}}">{{author.fullName}}</a> pour l'annonce <a href="{{ path("ads_show", {'slug': ad.slug})}}">{{ad.title}}</a> a bien été prise en compte !
-                </p>
+					Votre réservation auprès de
+					<a href="{{ path("user_show", {'slug': author.slug})}}">{{author.fullName}}</a>
+					pour l'annonce
+					<a href="{{ path("ads_show", {'slug': ad.slug})}}">{{ad.title}}</a>
+					a bien été prise en compte !
+				</p>
 			</div>
 		{% endif %}
 
@@ -37,7 +41,7 @@
 						<dd class="col-md-8">{{booking.amount}}
 							€</dd>
 						<dt class="col-md-4">Commentaire</dt>
-						<dd class="col-md-8">{{booking.comment}}</dd>
+						<dd class="col-md-8">{{booking.comment | default("Aucun commentaire")}}</dd>
 					</dl>
 
 					<hr>
@@ -60,6 +64,18 @@
 
 					<a href="{{ path('user_show', {'slug': author.slug}) }}" class="btn btn-info">Plus d'info sur
 						{{author.firstName}}</a>
+				</div>
+
+				<div class="alert alert-warning alert-dismissible fade show text-white">
+					<h2 class="alert-heading">Votre avis compte !</h2>
+					{% if date() > date(booking.endDate) %}
+						{{ form_start(form) }}
+						{{ form_widget(form) }}
+						<button type="submit" class="btn btn-success">Envoyer</button>
+						{{ form_end(form) }}
+					{% else %}
+						<p>Vous ne pourrez pas noté cette annonce tant que votre voyage ne sera pas complet !</p>
+					{% endif %}
 				</div>
 			</div>
 			<div class="col">

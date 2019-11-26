@@ -1,26 +1,31 @@
 {% set url = path('ads_show', {'slug': ad.slug}) %}
 <div class="col-md-4">
-    <div class="card bg-light mb-3 text-primary">
-        <div class="card-header text-center">
-            {{ ad.rooms }}
-            chambres,
-            <strong>{{ ad.price }}€/nuit</strong><br>
-            <small>Pas encore noté</small>
-        </div>
-        <img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width:100%; display: block">
+	<div class="card bg-light mb-3 text-primary">
+		<div class="card-header text-center">
+			{{ ad.rooms }}
+			chambres,
+			<strong>{{ ad.price }}€/nuit</strong><br>
+			{% if ad.comments | length > 0 %}
+				{% include "partials/rating.html.twig" with {'rating': ad.avgRAtings}%}
+			{% else %}
+				<small>Pas encore noté</small>
+			{% endif %}
 
-        <div class="card-body">
-            <h4 class="card-title">
-                <a href="{{ url }}">{{ ad.title }}</a>
-            </h4>
-            <p class="card-text">{{ ad.introduction }}</p>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="{{ url }}" class="btn btn-info btn-sm m-2">En savoir plus</a>
+		</div>
+		<img src="{{ ad.coverImage }}" alt="Image de l'appartement" style="height: 200px; width:100%; display: block">
 
-                {% if  app.user and app.user == ad.author %}
-                    <a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-success btn-sm m-2">Modifiez l'annonce</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
+		<div class="card-body">
+			<h4 class="card-title">
+				<a href="{{ url }}">{{ ad.title }}</a>
+			</h4>
+			<p class="card-text">{{ ad.introduction }}</p>
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<a href="{{ url }}" class="btn btn-info btn-sm m-2">En savoir plus</a>
+
+				{% if  app.user and app.user == ad.author %}
+					<a href="{{ path('ads_edit', {'slug': ad.slug}) }}" class="btn btn-success btn-sm m-2">Modifiez l'annonce</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
 </div>
