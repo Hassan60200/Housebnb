@@ -66,13 +66,21 @@
 						{{author.firstName}}</a>
 				</div>
 
-				<div class="alert alert-warning alert-dismissible fade show text-white">
+				<div class="alert alert-warning alert-dismissible fade show text-white" id="comment">
 					<h2 class="alert-heading">Votre avis compte !</h2>
 					{% if date() > date(booking.endDate) %}
-						{{ form_start(form) }}
-						{{ form_widget(form) }}
-						<button type="submit" class="btn btn-success">Envoyer</button>
-						{{ form_end(form) }}
+						{% set comment = booking.ad.commentFromAuthor(app.user) %}
+						{% if comment is not null  %}
+							<blockquote>
+								{{comment.content}}
+							</blockquote>
+							<strong>Note: {% include "partials/rating.html.twig" with {'rating': comment.rating} %}</strong>
+							{% else %}
+								{{ form_start(form) }}
+								{{ form_widget(form) }}
+								<button type="submit" class="btn btn-success">Envoyer</button>
+								{{ form_end(form) }}
+						{% endif %}
 					{% else %}
 						<p>Vous ne pourrez pas noté cette annonce tant que votre voyage ne sera pas complet !</p>
 					{% endif %}

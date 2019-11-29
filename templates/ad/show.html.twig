@@ -78,13 +78,12 @@
 
 					{% for comment in ad.comments %}
 						<div class="bg-light rounded mb-3 py-3 px-3">
-							<strong>{{ comment.author.fullName}}</strong>
+							<strong>{{ comment.author.firstName}}</strong>
 							a dit :
 							<blockquote>
 								{{comment.content}}
 							</blockquote>
-							<strong>Note donnée par
-								{{ comment.author.fullName}}</strong>:
+							<strong>Note donnée </strong>:
 							{{comment.rating}}
 
 
