@@ -13,16 +13,18 @@
 {% block body %}
 
 	<div class="container text-center text-dark">
-		<h1 class="jumbotron bg-primary text-white mb-5">Réservation de l'annonce :
-			{{ ad.title }}
-		</h1>
-
-		<p class="text-primary">Vous ếtes sur le point de réserver l'annonce de
+		<div class="reserved jumbotron my-5">
+			<h1 class="text-white">Réservation de l'annonce :
+				<em class="text-white">{{ ad.title }}</em>
+			</h1>
+		</div>
+		<p class="text-dark">Vous ếtes sur le point de réserver l'annonce de
 			<strong class="text-danger text-uppercase">{{ ad.author.fullName }}</strong>
 		</p>
 
 		{{ form_start(form)}}
-		<div class="alert alert-danger">
+		<div class="formbook">
+		<div class="alert">
 			<h2>Commencez par nous dire quelles sont les dates qui vous intéressent ?</h2>
 			<div class="row">
 				<div class="col">
@@ -38,7 +40,7 @@
 				&euro;</h4>
 			<span id="days">0</span>
 			nuit(s) à
-			{{ ad.price}}€/nuit
+			{{ ad.price | number_format(2, ',',' ')}}&euro;/nuit
 
 			<h2 class="my-5">Vous avez un commentaires à faire part</h2>
 
@@ -47,16 +49,17 @@
 			</div>
 		</div>
 
-
-		<div class="jumbotron bg-primary text-white">
-			<h2 class="my-5 text-white">Vous avez terminé !</h2>
+<hr>
+		<div class="text-white">
+			<h2 class="my-5 text-gold">Vous avez terminé !</h2>
 			<p>Vacances de rếve, boulots ou escale? Peut importe on est avec vous
 			</p>
 		</div>
 
-		<button class="btn btn-success" type="submit">Je réserve</button>
+		<button class="btn btn-success mb-3" type="submit">Je réserve</button>
 
 		{{form_end(form)}}
+		</div>
 	</div>
 {% endblock %}
 

@@ -8,11 +8,33 @@
     <div class="container text-center">
         <h1 class="jumbotron text-white bg-danger">Modification du Profil</h1>
 
-        {{ form_start(form)}}
-        {{ form_widget(form)}}
-        <button type="submit" class="btn btn-success">Enrengistrement des modifications</button>
+		{{ form_start(form) }}
+		<div class="row">
+			<div class="col">
+				<div class="alert alert-dismissible alert-primary">
+					<h2 class="alert-heading"><i class="fas fa-info-circle"></i> Mes informations</h2>
+					<hr>
+					{{form_row(form.firstName) }}
+					{{form_row(form.lastName) }}
+					{{form_row(form.email) }}
+					{{form_row(form.pictures) }}
+				</div>
+			</div>
+			<div class="col">
+				<div class="alert alert-dismissible alert-primary">
+					<h2 class="alert-heading"><i class="fas fa-info"></i> Détails</h2>
+					<hr>
+					{{form_row(form.introduction) }}
+					{{form_row(form.description) }}
 
-        {{ form_end(form)}}
+					<hr>
+					<p>Si vous avez fini vos modification, vous pouvez les sauvegarder !!</p>
+					<button class="btn btn-success"><i class="fas fa-user-edit"></i> Modifier la nouvelle annonce</button>
+				</div>
+			</div>
+
+			{{ form_end(form) }}
+		</div>
     </div>
 
 {% endblock %}

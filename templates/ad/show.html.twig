@@ -13,7 +13,7 @@
 				<strong>{{ad.rooms}}
 					chambres</strong>
 				pour
-				<strong>{{ ad.price }}€</strong>
+				<strong>{{ ad.price | number_format(2, ',',' ')}}€</strong>
 				par nuit</p>
 			<a href="{{ path('booking_create', {'slug': ad.slug}) }}" class="btn btn-success">Réserver</a>
 			{% if  app.user and app.user == ad.author %}

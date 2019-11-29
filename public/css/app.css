@@ -14,6 +14,12 @@ div.add-title h1, div.add-title p{
  text-shadow: 6px rgba(0, 0, 0, 0.5);
 }
 
+div.add-title .btn{
+    margin-top: 2em;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
 div.carousel-caption{
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
 }
@@ -44,4 +50,44 @@ span.rating i{
 }
 .fade{
     background-color: darkgoldenrod;
+}
+
+.alert a{
+    text-decoration: none;
+}
+
+.alert .btn{
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.banner h1{
+    background-color: tomato;
+    color: gold !important;
+}
+
+.reserved{
+    background-color: lightcoral !important;
+}
+
+.formbook{
+    background-color: lightsalmon !important;
+
+}
+
+.text-gold{
+    color: gold !important;
+    text-shadow: 5px 5px black;
+}
+
+.alert-success{
+    background-color: green !important;
+}
+
+.alert-warning{
+    background-color: yellow !important;
+}
+
+.alert-danger{
+    background-color: red !important;
 }
