@@ -1,0 +1,43 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Gestion des commentaires
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<h1 class="text-center my-5">Administration des commentaires</h1>
+		<table class="table table-hover text-dark text-center">
+			<thead class="bg-dark text-white">
+				<tr>
+					<th>Id</th>
+					<th>Date</th>
+					<th>Auteur</th>
+					<th>Commentaires</th>
+					<th>Note</th>
+					<th>Annonce</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody class="bg-secondary">
+				{% for comments in comment %}
+					<tr>
+						<td>{{comments.id}}</td>
+						<td>{{comments.createdAt | date('d/m/Y H:i')}}</td>
+						<td><img src="{{comments.author.pictures}}" alt="Avatar de {{comments.author.fullName}}" class="avatar mr-2 avatar-mini">{{comments.author.fullName}}</td>
+						<td>{{comments.content}}</td>
+						<td> <span class="badge badge-warning">{{comments.rating}}</span></td>
+						<td>{{comments.ad.title | raw}}</td>
+						<td colspan="2">
+							<a href="{{ path("admin_comment_edit", {'id': comments.id}) }}" class="btn btn-success">
+								<i class="far fa-edit"></i>
+							</a>
+							<a href="#" class="btn btn-danger">
+								<i class="far fa-trash-alt"></i>
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

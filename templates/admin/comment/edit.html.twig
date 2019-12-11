@@ -1,0 +1,23 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Mofication de l'annonce n°
+	{{comment.id}}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="text-center my-5">Mofication de l'annonce</h1>
+        <div class="alert alert-info">
+            <strong class="font-weight-bold">Annonce liée :</strong> {{comment.ad.title}}<br>
+            <strong class="font-weight-bold">Auteur :</strong> {{comment.author.fullName}}<br>
+            <strong class="font-weight-bold">Date de création :</strong> {{comment.createdAt | date('d/m/Y H:i')}}<br>
+            <strong class="font-weight-bold">Note :</strong> {{comment.rating}}<br>
+        </div>
+			{{form_start(form)}}
+            <div class="border border-dark p-5">
+				{{form_widget(form)}}
+				<button type="submit" class="btn btn-success text-center">Modification</button>
+                </div>
+			{{form_end(form)}}
+	</div>
+{% endblock %}
