@@ -48,4 +48,22 @@ class AdminCommentController extends AbstractController
             'comment' => $comment
         ]);
     }
+
+    /**
+     * Permet de supprimer le commentaire
+     * @Route("/admin/comments/{id}/delete", name="admin_comment_delete")
+     *
+     * @return Response
+     */
+    public function delete(Comment $comment, ObjectManager $manager){
+
+        $manager->remove($comment);
+        $manager->flush();
+
+        $this->addFlash(
+            'success',
+            "Le commentaire de <strong>{$comment->getAuthor()->getFullName()}</strong> a bien été supprimée !!!"
+        );
+        return $this->redirectToRoute('admin_comment_index');
+    }
 }
