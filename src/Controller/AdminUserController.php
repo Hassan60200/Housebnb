@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\AccountType;
 use App\Repository\UserRepository;
+use App\Service\PaginationService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,29 +14,34 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminUserController extends AbstractController
 {
     /**
-     * @Route("/admin/users", name="admin_user_index")
+     * @Route("/admin/users{page<\d+>?1}", name="admin_user_index")
      */
-    public function index(UserRepository $repo)
+    public function index(UserRepository $repo, $page, PaginationService $pagination)
     {
+        $pagination->setEntityClass(User::class)
+            ->setPage($page);
+
+
         return $this->render('admin/user/index.html.twig', [
-            'user' => $repo->findAll()
+            'pagination' => $pagination
         ]);
     }
 
-/**
- * Permet de modifier un utilisateur
- * @Route("/admin/users/{id}/edit", name="admin_user_edit")
- *
- * @param Request $request
- * @param ObjectManager $manager
- * @return Response
- */
-    public function edit(Request $request, ObjectManager $manager, User $user){
+    /**
+     * Permet de modifier un utilisateur
+     * @Route("/admin/users/{id}/edit", name="admin_user_edit")
+     *
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return Response
+     */
+    public function edit(Request $request, ObjectManager $manager, User $user)
+    {
 
         $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $manager->persist($user);
             $manager->flush();
 

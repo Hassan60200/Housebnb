@@ -14,19 +14,21 @@
 					<th>Nom & Prénom</th>
 					<th>Email</th>
 					<th>Introduction</th>
-                    <th>Description détaillée</th>
+					<th>Description détaillée</th>
 					<th>Action</th>
 				</tr>
 			</thead>
 
 			<tbody class="bg-secondary">
-				{% for users in user %}
+				{% for users in pagination.data %}
 					<tr>
 						<td>{{users.id}}</td>
-						<td><img src="{{users.pictures}}" class="avatar avatar-mini"> <br>{{users.fullName}}</td>
-						<td>{{users.email}} </td>
-                        <td>{{users.introduction}}</td>
-                        <td>{{users.description | raw}}</td>
+						<td><img src="{{users.pictures}}" class="avatar avatar-mini">
+							<br>{{users.fullName}}</td>
+						<td>{{users.email}}
+						</td>
+						<td>{{users.introduction}}</td>
+						<td>{{users.description | raw}}</td>
 						<td colspan="2">
 							<a href="{{path('admin_user_edit', {'id': users.id}) }}" class="btn btn-success">
 								<i class="far fa-edit"></i>
@@ -39,5 +41,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		{{pagination.display()}}
 	</div>
 {% endblock %}

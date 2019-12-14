@@ -19,13 +19,15 @@
 				</tr>
 			</thead>
 			<tbody class="bg-secondary">
-				{% for comments in comment %}
+				{% for comments in pagination.data %}
 					<tr>
 						<td>{{comments.id}}</td>
 						<td>{{comments.createdAt | date('d/m/Y H:i')}}</td>
 						<td><img src="{{comments.author.pictures}}" alt="Avatar de {{comments.author.fullName}}" class="avatar mr-2 avatar-mini">{{comments.author.fullName}}</td>
 						<td>{{comments.content}}</td>
-						<td> <span class="badge badge-warning">{{comments.rating}}</span></td>
+						<td>
+							<span class="badge badge-warning">{{comments.rating}}</span>
+						</td>
 						<td>{{comments.ad.title | raw}}</td>
 						<td colspan="2">
 							<a href="{{ path("admin_comment_edit", {'id': comments.id}) }}" class="btn btn-success">
@@ -39,5 +41,6 @@
 				{% endfor %}
 			</tbody>
 		</table>
+		{{pagination.display()}}
 	</div>
 {% endblock %}
