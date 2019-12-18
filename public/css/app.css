@@ -1,4 +1,4 @@
-div.container{
+div.container, div.container-fluid{
     margin-top: 20px;
 }
 
@@ -94,4 +94,15 @@ span.rating i{
 .alert-danger{
     background-color: red !important;
     color: white !important;
+}
+.bg-purple{
+    background-color: purple;
+}
+
+.alert-success-light{
+    background-color: darkgreen;
+}
+
+.alert-danger-light{
+    background-color: darkred;
 }
