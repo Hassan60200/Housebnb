@@ -1,4 +1,3 @@
-
         $('#add-images').click(function () { // Je récupère les numéros des futurs champs que je vais créer
             const index = + $('#widgets-counter').val();
 

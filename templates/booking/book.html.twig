@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block stylesheets %}
+	{{ encore_entry_link_tags('css/app') }}
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous"/>
 {% endblock %}
 
@@ -24,46 +25,47 @@
 
 		{{ form_start(form)}}
 		<div class="formbook">
-		<div class="alert">
-			<h2>Commencez par nous dire quelles sont les dates qui vous intéressent ?</h2>
-			<div class="row">
-				<div class="col">
-					{{ form_row(form.startDate)}}
+			<div class="alert">
+				<h2>Commencez par nous dire quelles sont les dates qui vous intéressent ?</h2>
+				<div class="row">
+					<div class="col">
+						{{ form_row(form.startDate)}}
+					</div>
+					<div class="col">
+						{{ form_row(form.endDate)}}
+					</div>
 				</div>
-				<div class="col">
-					{{ form_row(form.endDate)}}
+
+				<h4>Montant du séjour :
+					<span id="amount">...</span>
+					&euro;</h4>
+				<span id="days">0</span>
+				nuit(s) à
+				{{ ad.price | number_format(2, ',',' ')}}&euro;/nuit
+
+				<h2 class="my-5">Vous avez un commentaires à faire part</h2>
+
+				<div class="mb-5 form-group">
+					{{form_row(form.comment)}}
 				</div>
 			</div>
 
-			<h4>Montant du séjour :
-				<span id="amount">...</span>
-				&euro;</h4>
-			<span id="days">0</span>
-			nuit(s) à
-			{{ ad.price | number_format(2, ',',' ')}}&euro;/nuit
-
-			<h2 class="my-5">Vous avez un commentaires à faire part</h2>
-
-			<div class="mb-5 form-group">
-				{{form_row(form.comment)}}
+			<hr>
+			<div class="text-white">
+				<h2 class="my-5 text-gold">Vous avez terminé !</h2>
+				<p>Vacances de rếve, boulots ou escale? Peut importe on est avec vous
+				</p>
 			</div>
-		</div>
 
-<hr>
-		<div class="text-white">
-			<h2 class="my-5 text-gold">Vous avez terminé !</h2>
-			<p>Vacances de rếve, boulots ou escale? Peut importe on est avec vous
-			</p>
-		</div>
+			<button class="btn btn-success mb-3" type="submit">Je réserve</button>
 
-		<button class="btn btn-success mb-3" type="submit">Je réserve</button>
-
-		{{form_end(form)}}
+			{{form_end(form)}}
 		</div>
 	</div>
 {% endblock %}
 
 {% block javascripts %}
+	{{ encore_entry_script_tags('js/app') }}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha256-bqVeqGdJ7h/lYPq6xrPv/YGzMEb6dNxlfiTUHSgRCp8=" crossorigin="anonymous"></script>
 	<script>
 		$(document).ready(function () {
