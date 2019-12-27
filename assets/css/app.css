@@ -1,3 +1,114 @@
-body {
-    background-color: lightgray;
+@import url('./bootstrap.min.css');
+
+div.container, div.container-fluid{
+    margin-top: 20px;
+}
+
+div.add-title{
+    padding: 2em;
+    background-size: cover;
+    background-position: center;
+
+    h1, p{
+        color: white;
+        text-shadow: 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .btn{
+        margin-top: 2em;
+        font-size: 1.5em;
+        line-height: 1.5em;
+    }
+}
+
+
+div.carousel-caption{
+    text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.avatar{
+    max-width: 128px;
+    max-height: 128px;
+    border-radius: 50%;
+
+    &.avatar-medium{
+        max-width: 64px;
+        max-height: 64px;
+    }
+    
+    &.avatar-mini{
+        max-width: 34px;
+        max-height: 34px;
+        border-radius: 50%;
+    
+    }
+}
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+    color: firebrick !important;
+    font-weight: bold;
+}
+span.rating i{
+    color: gold;
+}
+.fade{
+    background-color: darkgoldenrod;
+}
+
+.alert{
+
+    a{
+        text-decoration: none;
+    }
+
+    .btn{
+        font-size: 1.5em;
+        line-height: 1.5em;
+    }
+
+    .alert-success{
+        background-color: green !important;
+        color: white !important;
+    }
+    
+    .alert-warning{
+        background-color: goldenrod !important;
+        color: white !important;
+    }
+    
+    .alert-danger{
+        background-color: red !important;
+        color: white !important;
+    }
+    .bg-purple{
+        background-color: purple;
+    }
+    
+    .alert-success-light{
+        background-color: darkgreen;
+    }
+    
+    .alert-danger-light{
+        background-color: darkred;
+    }
+}
+
+
+.banner h1{
+    background-color: tomato;
+    color: gold !important;
+}
+
+.reserved{
+    background-color: lightcoral !important;
+}
+
+.formbook{
+    background-color: lightsalmon !important;
+
+}
+
+.text-gold{
+    color: goldenrod !important;
+    text-shadow: 5px 5px black;
 }
