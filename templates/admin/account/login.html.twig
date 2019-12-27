@@ -1,46 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta http-equiv="X-UA-Compatible" content="ie=edge">
-		<title>Connexion à l'admin</title>
-		<link rel="stylesheet" href="/css/bootstrap.min.css">
+		<title>Housebnb-
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+
+		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-		<link rel="stylesheet" href="/css/app.css">
-		</head>
-		<body>
-			<div class="container mt-5 text-dark d-flex justify-content-center">
-				<div class="col-md-6">
-					<div class="card bg-light mt-5">
-						<div class="card-header">
-							<h4 class="card-title">
-								<i class="fas fa-lock"></i> Connexion à l'adminatration</h4>
-						</div>
-						<div class="card-body">
-                        {% if hasError %}
-                            <div class="alert alert-danger text-white">
-                                Les informations émise sont incorrectes. 
-                            </div>
-                        {% endif %}
-                        
-							<form method="post">
-								<div class="form-group">
-									<label for="_username">Email</label><input type="text" class="form-control" placeholder="Votre adresse mail" value="{{ username }}" name="_username"></div>
-								<div class="form-group">
-									<label for="_password">Mot de passe</label><input type="password" class="form-control" placeholder="Votre mot de passe" name="_password"></div>
-								<div class="form-group">
-									<button type="submit" class="btn btn-success">
-										<i class="fas fa-lock-open"></i>
-										Connexion</button>
-									<a href="{{ path('homepage') }}" class="btn btn-link">
-										<i class="fas fa-arrow-circle-left"></i>
-										Retour au site</a>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('css/app') }}
+		{% endblock %}
+	</head>
+
+{% block body %}
+<div class="container mt-5 text-dark d-flex justify-content-center">
+	<div class="col-md-6">
+		<div class="card bg-light mt-5">
+			<div class="card-header">
+				<h4 class="card-title">
+					<i class="fas fa-lock"></i>
+					Connexion à l'adminatration</h4>
 			</div>
-		</body>
-	</html>
+			<div class="card-body">
+				{% if hasError %}
+					<div class="alert alert-danger text-white">
+						Les informations émise sont incorrectes.
+					</div>
+				{% endif %}
+
+				<form method="post">
+					<div class="form-group">
+						<label for="_username">Email</label><input type="text" class="form-control" placeholder="Votre adresse mail" value="{{ username }}" name="_username"></div>
+					<div class="form-group">
+						<label for="_password">Mot de passe</label><input type="password" class="form-control" placeholder="Votre mot de passe" name="_password"></div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">
+							<i class="fas fa-lock-open"></i>
+							Connexion</button>
+						<a href="{{ path('homepage') }}" class="btn btn-link">
+							<i class="fas fa-arrow-circle-left"></i>
+							Retour au site</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+{% block javascripts %}
+			{{ encore_entry_script_tags('js/app') }}
+		{% endblock %}
+	</body>
+</html>
+

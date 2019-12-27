@@ -2,24 +2,25 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Housebnb-
-			{% block title %}Welcome!
-			{% endblock %}
+		<title>
+			{% block title %}Bienvenu sur Housebnb !	{% endblock %}
 		</title>
-
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
-		<link rel="stylesheet" href="{{ asset('build/css/app.css') }}"> {% block stylesheets %}{% endblock %}
-		</head>
-		<body>
+		{% block stylesheets %}
+		{{ encore_entry_link_tags('css/app') }}
+		{% endblock %}
+	</head>
+	<body>
 
-			{% include "partials/header.html.twig" %}
+		{% include "partials/header.html.twig" %}
 
-			{% block body %}{% endblock %}
+		{% block body %}{% endblock %}
 
-			{% include "partials/footer.html.twig" %}
+		{% include "partials/footer.html.twig" %}
 
-		<script src="{{ asset('build/js/app.js') }}"></script>
-			{% block javascripts %}{% endblock %}
-		</body>
-	</html>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('js/app') }}
+		{% endblock %}
+	</body>
+</html>
