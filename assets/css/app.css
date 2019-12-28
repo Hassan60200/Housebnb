@@ -57,40 +57,37 @@ span.rating i{
 
 .alert{
 
-    a{
-        text-decoration: none;
-    }
-
     .btn{
         font-size: 1.5em;
         line-height: 1.5em;
     }
 
-    .alert-success{
-        background-color: green !important;
-        color: white !important;
-    }
-    
-    .alert-warning{
-        background-color: goldenrod !important;
-        color: white !important;
-    }
-    
-    .alert-danger{
-        background-color: red !important;
-        color: white !important;
-    }
-    .bg-purple{
-        background-color: purple;
-    }
-    
-    .alert-success-light{
-        background-color: darkgreen;
-    }
-    
-    .alert-danger-light{
-        background-color: darkred;
-    }
+}
+
+.alert-success{
+    background-color: green !important;
+    color: white !important;
+}
+
+.alert-warning{
+    background-color: goldenrod !important;
+    color: white !important;
+}
+
+.alert-danger{
+    background-color: red !important;
+    color: white !important;
+}
+.bg-purple{
+    background-color: purple;
+}
+
+.alert-success-light{
+    background-color: darkgreen;
+}
+
+.alert-danger-light{
+    background-color: darkred;
 }
 
 
