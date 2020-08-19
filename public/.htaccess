@@ -1,0 +1,10 @@
+<VirtualHost *:80>
+    # ...
+    DocumentRoot /var/www/project/public
+
+    <Directory /var/www/project/public>
+        AllowOverride None
+
+        # Copy .htaccess contents here
+    </Directory>
+</VirtualHost>
