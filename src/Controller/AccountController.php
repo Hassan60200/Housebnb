@@ -8,6 +8,7 @@ use App\Entity\PasswordUpdate;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
 use Symfony\Component\Form\FormError;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
@@ -51,7 +52,7 @@ class AccountController extends AbstractController
      * @Route("/register", name="register")
      * @return Response
      */
-    public function register(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+    public function register(Request $request,EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
 
@@ -59,16 +60,16 @@ class AccountController extends AbstractController
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getHash());
             $user->setHash($hash);
 
-            $manager->persist($user);
-            $manager->flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             $this->addFlash(
                 'success',
-                "Votre compte a bien été crée ! Vous pouvez vous connectez"
+                "Votre compte a bien été créé ! Vous pouvez maintenant vous connecter !"
             );
 
             return $this->redirectToRoute('account_login');
