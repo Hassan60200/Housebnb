@@ -2,15 +2,15 @@
 
 namespace App\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 class StatsService{
 
     private $manager;
 
-    public function __construct(ObjectManager $manager)
+    public function __construct(EntityManagerInterface $entityManager)
     {
-        $this->manager = $manager;
+        $this->manager = $entityManager;
     }
      public function getStats(){
         $users = $this->getUsersCount();
