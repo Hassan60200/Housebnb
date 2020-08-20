@@ -6,6 +6,7 @@ use App\Entity\Ad;
 use App\Form\AdType;
 use App\Repository\AdRepository;
 use App\Service\PaginationService;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,15 +34,15 @@ class AdminAdController extends AbstractController
      * @param Ad $ad
      * @return Response
      */
-    public function edit(Ad $ad, Request $request, ObjectManager $manager)
+    public function edit(Ad $ad, Request $request, EntityManagerInterface $entityManager)
     {
         $form = $this->createForm(AdType::class, $ad);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($ad);
-            $manager->flush();
+            $entityManager->persist($ad);
+            $entityManager->flush();
 
             $this->addFlash(
                 'success',
@@ -64,7 +65,7 @@ class AdminAdController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(Ad $ad, ObjectManager $manager)
+    public function delete(Ad $ad, EntityManagerInterface $entityManager)
     {
         if (count($ad->getBookings()) > 0) {
             $this->addFlash(
@@ -72,8 +73,8 @@ class AdminAdController extends AbstractController
                 "Vous ne pouvez pas supprimée l'annonce <strong>{{$ad->getTitle()}}</strong> car elle possède déjà des réservations"
             );
         } else {
-            $manager->remove($ad);
-            $manager->flush();
+            $entityManager->remove($ad);
+            $entityManager->flush();
 
             $this->addFlash(
                 'success',

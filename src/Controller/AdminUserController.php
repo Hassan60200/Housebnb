@@ -6,10 +6,11 @@ use App\Entity\User;
 use App\Form\AccountType;
 use App\Repository\UserRepository;
 use App\Service\PaginationService;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminUserController extends AbstractController
 {
@@ -35,15 +36,15 @@ class AdminUserController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function edit(Request $request, ObjectManager $manager, User $user)
+    public function edit(Request $request, EntityManagerInterface $entityManager, User $user)
     {
 
         $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $manager->persist($user);
-            $manager->flush();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             $this->addFlash(
                 'success',
@@ -64,11 +65,11 @@ class AdminUserController extends AbstractController
      * @param ObjectManager $manager
      * @return Response
      */
-    public function delete(User $user, ObjectManager $manager)
+    public function delete(User $user, EntityManagerInterface $entityManager)
     {
 
-        $manager->remove($user);
-        $manager->flush();
+        $entityManager->remove($user);
+        $entityManager->flush();
 
         $this->addFlash(
             'success',
