@@ -7,8 +7,9 @@ use App\Entity\Booking;
 use App\Entity\Comment;
 use App\Form\BookingType;
 use App\Form\CommentType;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,7 +20,7 @@ class BookingController extends AbstractController
      * @Route("/ads/{slug}/book", name="booking_create")
      * @IsGranted("ROLE_USER")
      */
-    public function book(Ad $ad, Request $request, ObjectManager $manager)
+    public function book(Ad $ad, Request $request, EntityManagerInterface $entityManager)
     {
         $booking = new Booking();
         $form = $this->createForm(BookingType::class, $booking);
@@ -41,8 +42,8 @@ class BookingController extends AbstractController
                 );
             } else {
                 // sinon enrengistrement et redirection
-                $manager->persist($booking);
-                $manager->flush();
+                $entityManager->persist($booking);
+                $entityManager->flush();
 
                 return $this->redirectToRoute('booking_show', ['id' => $booking->getId(), 'withAlert' => true]);
             }
